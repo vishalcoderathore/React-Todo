@@ -7,32 +7,32 @@ var TestUtils = require('react-addons-test-utils');
 var TodoSearch = require('TodoSearch');
 
 describe('TosoSearch', () => {
-  it('should exist', () => {
-    expect(TodoSearch).toExist();
-  });
+    it('should exist', () => {
+        expect(TodoSearch).toExist();
+    });
 
-  it('should call onSearch with entered input text', () =>  {
-    var testData = "Test Data";
-    var spy = expect.createSpy();
-    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    it('should call onSearch with entered input text', () => {
+        var testData = "Test Data";
+        var spy = expect.createSpy();
+        var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
 
-    todoSearch.refs.searchText.value = testData;
-    TestUtils.Simulate.change(todoSearch.refs.searchText);
+        todoSearch.refs.searchText.value = testData;
+        TestUtils.Simulate.change(todoSearch.refs.searchText);
 
-    expect(spy).toHaveBeenCalledWith(false, testData);
+        expect(spy).toHaveBeenCalledWith(false, testData);
 
-  });
+    });
 
-  it('should call onSearch with proper checked value', () =>  {
-    var testData = "";
-    var spy = expect.createSpy();
-    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    it('should call onSearch with proper checked value', () => {
+        var testData = "";
+        var spy = expect.createSpy();
+        var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
 
-    todoSearch.refs.showCompleted.checked = true;
-    TestUtils.Simulate.change(todoSearch.refs.showCompleted);
+        todoSearch.refs.showCompleted.checked = true;
+        TestUtils.Simulate.change(todoSearch.refs.showCompleted);
 
-    expect(spy).toHaveBeenCalledWith(true, testData);
+        expect(spy).toHaveBeenCalledWith(true, testData);
 
-   });
+    });
 
 });

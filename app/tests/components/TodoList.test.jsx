@@ -8,23 +8,29 @@ var TodoList = require('TodoList');
 var Todo = require('Todo');
 
 describe('TodoList', () => {
-  it('should exist', () =>{
-    expect(TodoList).toExist();
-  });
+    it('should exist', () => {
+        expect(TodoList).toExist();
+    });
 
-  it('should render one Todo component for each todo item', () => {
-    var todos = [
-      {
-        id : '1',
-        text : 'First Text'
-      },
-      {
-        id : '2',
-        text : 'Second Text'
-      }
-    ];
-    var todoList = TestUtils.renderIntoDocument(<TodoList todos = {todos}/>);
-    var todosComponent = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
-    expect(todosComponent.length).toBe(todos.length);
-  });
+    it('should render one Todo component for each todo item', () => {
+        var todos = [
+            {
+                id: '1',
+                text: 'First Text'
+            }, {
+                id: '2',
+                text: 'Second Text'
+            }
+        ];
+        var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+        var todosComponent = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
+        expect(todosComponent.length).toBe(todos.length);
+    });
+
+    it("should give a message if there's no todo item", () => {
+        var todos = [];
+        var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+        var $el = $(ReactDOM.findDOMNode(todoList));
+        expect($el.find(".container__message").length).toBe(1);
+    });
 });
